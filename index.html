@@ -22,6 +22,7 @@
     <header class="header">
       <h1>日本語 퀴즈</h1>
       <p class="subtitle">뜻 입력하기 · 4개 중 고르기</p>
+      <button type="button" class="contact-cta" id="contactCta">일본인 친구를 만나고 싶다면 연락주세요</button>
     </header>
 
     <section class="start-screen" id="startScreen">
@@ -78,6 +79,23 @@
       <button type="button" class="btn primary" id="retryBtn">다시 하기</button>
     </section>
   </div>
+
+  <div class="modal-overlay hidden" id="contactModal">
+    <div class="modal">
+      <button type="button" class="modal-close" id="contactModalClose" aria-label="닫기">×</button>
+      <h2>연락하기</h2>
+      <p class="modal-desc">일본인 친구를 만나고 싶다면 아래를 작성해 주세요.</p>
+      <form id="contactForm">
+        <label>이름 <input type="text" name="name" required></label>
+        <label>생년월일 <input type="text" name="birthDate" placeholder="예: 1990-01-15" required></label>
+        <label>전화번호 <input type="tel" name="phone" required></label>
+        <label>이메일 <input type="email" name="email" required></label>
+        <button type="submit" class="btn primary">전송</button>
+      </form>
+      <p class="contact-status hidden" id="contactStatus"></p>
+    </div>
+  </div>
+
   <script src="data.js"></script>
   <script src="app.js"></script>
 </body>

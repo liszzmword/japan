@@ -49,6 +49,125 @@ body {
   color: var(--muted);
 }
 
+.contact-cta {
+  display: block;
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.6rem 1rem;
+  border: 1px dashed var(--accent);
+  border-radius: 8px;
+  background: rgba(196, 92, 74, 0.06);
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s, border-style 0.2s;
+}
+
+.contact-cta:hover {
+  background: rgba(196, 92, 74, 0.12);
+  border-style: solid;
+}
+
+/* Contact modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-overlay.hidden {
+  display: none;
+}
+
+.modal-overlay .modal {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  background: transparent;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: var(--ink);
+}
+
+.modal h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.modal-desc {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.modal #contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.modal #contactForm label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.modal #contactForm input {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.modal #contactForm input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.modal #contactForm .btn.primary {
+  margin-top: 0.5rem;
+}
+
+.contact-status {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.contact-status.success {
+  color: var(--correct);
+}
+
+.contact-status.error {
+  color: var(--wrong);
+}
+
 .start-screen h2,
 .quiz-screen h2,
 .result-screen h2 {

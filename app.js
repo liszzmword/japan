@@ -180,6 +180,59 @@
     $('#nextBtn').addEventListener('click', nextQuestion);
 
     $('#retryBtn').addEventListener('click', () => showScreen('#startScreen'));
+
+    $('#contactCta').addEventListener('click', () => {
+      $('#contactModal').classList.remove('hidden');
+      $('#contactStatus').classList.add('hidden');
+      $('#contactForm').reset();
+    });
+
+    $('#contactModalClose').addEventListener('click', () => {
+      $('#contactModal').classList.add('hidden');
+    });
+
+    $('#contactModal').addEventListener('click', (e) => {
+      if (e.target.id === 'contactModal' || e.target.classList.contains('modal-overlay')) {
+        $('#contactModal').classList.add('hidden');
+      }
+    });
+
+    $('#contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        name: form.name.value.trim(),
+        birthDate: form.birthDate.value.trim(),
+        phone: form.phone.value.trim(),
+        email: form.email.value.trim()
+      };
+      const btn = form.querySelector('button[type="submit"]');
+      const statusEl = $('#contactStatus');
+      btn.disabled = true;
+      statusEl.classList.add('hidden');
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await res.json().catch(() => ({}));
+        statusEl.classList.remove('hidden');
+        if (res.ok && result.ok) {
+          statusEl.textContent = '전송되었습니다. 연락드리겠습니다.';
+          statusEl.className = 'contact-status success';
+          form.reset();
+        } else {
+          statusEl.textContent = result.message || '전송에 실패했어요. 잠시 후 다시 시도해 주세요.';
+          statusEl.className = 'contact-status error';
+        }
+      } catch (err) {
+        statusEl.classList.remove('hidden');
+        statusEl.textContent = '전송에 실패했어요. 네트워크를 확인해 주세요.';
+        statusEl.className = 'contact-status error';
+      }
+      btn.disabled = false;
+    });
   }
 
   function init() {
